@@ -1,3 +1,9 @@
+const favicon = document.createElement('link');
+favicon.rel = 'icon';
+favicon.type = 'image/jpeg';
+favicon.href = 'assets/acb-contact-logo.jpg';
+document.head.appendChild(favicon);
+
 const menuButton = document.querySelector('.menu-btn');
 const nav = document.querySelector('.nav');
 
