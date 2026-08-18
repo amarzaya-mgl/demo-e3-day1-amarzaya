@@ -1,1 +1,46 @@
-<!doctype html><html lang="mn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Холбоо — Visa Vision Victory</title><link rel="stylesheet" href="styles.css"></head><body><div class="noise"></div><div class="orb"></div><header class="site-header"><a class="brand" href="index.html">VISA<span>.</span></a><button class="menu-btn">☰</button><nav class="nav"><a href="index.html">Эхлэл</a><a href="services.html">Үйлчилгээ</a><a href="pricing.html">Тариф</a><a class="active" href="contact.html">Холбоо</a></nav></header><main class="page"><section class="page-intro reveal"><p class="eyebrow"><span class="dot"></span>Холбоо барих</p><h1>Таны аяллын тухай <span class="accent">ярилцъя.</span></h1></section><section class="section contact-grid reveal"><div><h2>Эхний алхмаа өнөөдөр хийгээрэй.</h2><p class="section-copy" style="margin-top:1.5rem">Мэдээллээ үлдээгээрэй. Бид ажлын нэг өдрийн дотор холбогдоно.</p><ul class="contact-list"><li>Утас<br><a href="tel:+97699999999">+976 9999 9999</a></li><li>И-мэйл<br><a href="mailto:hello@visavision.mn">hello@visavision.mn</a></li><li>Байршил<br><a href="#">Улаанбаатар, Монгол</a></li></ul></div><form class="form" id="contact-form"><div class="field"><label for="name">Нэр</label><input id="name" required placeholder="Таны нэр"></div><div class="field"><label for="phone">Утас</label><input id="phone" required placeholder="+976"></div><div class="field"><label for="country">Сонирхож буй улс</label><select id="country"><option>АНУ</option><option>Канад</option><option>Шенген</option><option>Австрали</option><option>Англи</option></select></div><div class="field"><label for="message">Товч мэдээлэл</label><textarea id="message" placeholder="Аяллын зорилго, хугацаа..."></textarea></div><button class="btn" type="submit">Хүсэлт илгээх →</button><p class="form-status" role="status"></p></form></section></main><footer class="site-footer"><div class="footer-row"><p>Яг одоо холбогдоорой</p><p>2026 © ACB Mongolia</p></div><div class="footer-brand">Visa Vision Victory</div></footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Холбоо — Visa Vision Victory</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>.contact-account{display:inline-flex;align-items:center;gap:.7rem;margin-top:.4rem}.contact-account-logo{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.2);transition:.25s}.contact-account:hover .contact-account-logo{transform:scale(1.08)}</style>
+</head>
+<body>
+  <div class="noise"></div><div class="orb"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html">VISA<span>.</span></a>
+    <button class="menu-btn" aria-label="Цэс">☰</button>
+    <nav class="nav"><a href="index.html">Эхлэл</a><a href="services.html">Үйлчилгээ</a><a href="pricing.html">Тариф</a><a class="active" href="contact.html">Холбоо</a></nav>
+  </header>
+  <main class="page">
+    <section class="page-intro reveal">
+      <p class="eyebrow"><span class="dot"></span>Холбоо барих</p>
+      <h1>Таны аяллын тухай <span class="accent">ярилцъя.</span></h1>
+    </section>
+    <section class="section contact-grid reveal">
+      <div>
+        <h2>Эхний алхмаа өнөөдөр хийгээрэй.</h2>
+        <p class="section-copy" style="margin-top:1.5rem">Мэдээллээ үлдээгээрэй. Бид ажлын нэг өдрийн дотор холбогдоно.</p>
+        <ul class="contact-list">
+          <li>Утас<br><a href="tel:+97696963525">9696-3525</a><br><a href="tel:+97695953525">9595-3525</a></li>
+          <li>И-мэйл<br><a class="contact-account" href="mailto:acb.mongolia@gmail.com"><img class="contact-account-logo" src="assets/acb-contact-logo.jpg" alt="ACB Mongolia лого"><span>acb.mongolia@gmail.com</span></a></li>
+          <li>Facebook<br><a class="contact-account" href="https://www.facebook.com/acb.mongolia.1/about_details" target="_blank" rel="noopener noreferrer" aria-label="ACB Mongolia Facebook хуудас"><img class="contact-account-logo" src="assets/acb-contact-logo.jpg" alt="ACB Mongolia лого"><span>acb mongolia</span></a></li>
+        </ul>
+      </div>
+      <form class="form" id="contact-form">
+        <div class="field"><label for="name">Нэр</label><input id="name" name="name" autocomplete="name" required placeholder="Таны нэр"></div>
+        <div class="field"><label for="phone">Утас</label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+976"></div>
+        <div class="field"><label for="email">Таны имэйл хаяг</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="name@example.com"></div>
+        <div class="field"><label for="country">Сонирхож буй улс</label><select id="country" name="country"><option>АНУ</option><option>Канад</option><option>Шенген</option><option>Австрали</option><option>Англи</option></select></div>
+        <div class="field"><label for="message">Товч мэдээлэл</label><textarea id="message" name="message" placeholder="Аяллын зорилго, хугацаа..."></textarea></div>
+        <button class="btn" type="submit">Хүсэлт илгээх →</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-row"><p>Яг одоо холбогдоорой</p><p>2026 © ACB Mongolia</p></div><div class="footer-brand">Visa Vision Victory</div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
