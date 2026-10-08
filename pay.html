@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Төлбөр – onlinevisa.mn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EEF3F1; --sheet: #FFFFFF; --ink: #1B3A6B; --text: #1A2230;
+    --muted: #5A6675; --line: #C9D4D1; --stamp: #B23A2E;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 16px; line-height: 1.55; color: var(--text);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 14px, rgba(27,58,107,.035) 14px 15px),
+      var(--paper);
+    min-height: 100vh; display: grid; place-items: center; padding: 20px;
+  }
+  .sheet {
+    background: var(--sheet); border: 1px solid var(--line); border-radius: 6px;
+    padding: 32px 28px; max-width: 460px; width: 100%; text-align: center;
+  }
+  h1 { font-size: 1.5rem; color: var(--ink); margin: 0 0 10px; line-height: 1.25; }
+  p { margin: 0 0 12px; color: var(--muted); }
+  .stamp {
+    display: inline-block; border: 3px double var(--stamp); color: var(--stamp);
+    border-radius: 10px; padding: 10px 22px; margin: 8px 0 18px; transform: rotate(-3deg);
+  }
+  .stamp .amount { font-size: 1.8rem; font-weight: 700; line-height: 1.1; }
+  .stamp .order { font-size: .9rem; }
+  .dots::after { content: ""; animation: dots 1.4s steps(4) infinite; }
+  @keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75% { content: "..."; } }
+  @media (prefers-reduced-motion: reduce) { .dots::after { animation: none; content: "…"; } }
+  .btn {
+    display: inline-block; background: var(--ink); color: #fff; text-decoration: none;
+    border-radius: 4px; padding: 12px 22px; font-weight: 600; margin-top: 6px;
+  }
+  .btn:focus-visible { outline: 3px solid rgba(27,58,107,.35); outline-offset: 2px; }
+  #ready, #slow { display: none; }
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <section id="waiting">
+      <h1>Төлбөрийн хуудсыг бэлдэж байна<span class="dots"></span></h1>
+      <p>Хэдэн секунд хүлээнэ үү. Энэ хуудсыг хаах шаардлагагүй.</p>
+    </section>
+
+    <section id="ready">
+      <h1>Төлбөрийн хуудас руу шилжиж байна</h1>
+      <div class="stamp"><div class="amount" id="amount"></div><div class="order" id="order"></div></div>
+      <p>Автоматаар шилжихгүй бол доорх товчийг дарна уу.</p>
+      <a class="btn" id="payLink" href="#">Төлбөр төлөх</a>
+    </section>
+
+    <section id="slow">
+      <h1>Төлбөрийн холбоосыг имэйлээр илгээнэ</h1>
+      <p>Төлбөрийн хуудас бэлдэхэд ердийнхөөс удаж байна. Маягтад бичсэн имэйл хаяг руу тань холбоос хэдэн минутын дотор очно. Spam хавтсаа мөн шалгаарай.</p>
+    </section>
+  </main>
+
+<script>
+  // ==== Тохиргоо ====
+  const N8N_BASE = 'https://amarzaya-khashkhuu.app.n8n.cloud/webhook';
+  const POLL_MS = 2000;
+  const GIVE_UP_MS = 90 * 1000;
+
+  const ref = new URLSearchParams(location.search).get('ref') || '';
+  const started = Date.now();
+
+  function money(n) {
+    return Number(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '₮';
+  }
+  function show(id) {
+    ['waiting', 'ready', 'slow'].forEach(s => document.getElementById(s).style.display = s === id ? 'block' : 'none');
+  }
+
+  async function poll() {
+    if (!/^[A-Z0-9]{8,32}$/.test(ref)) { show('slow'); return; }
+    if (Date.now() - started > GIVE_UP_MS) { show('slow'); return; }
+    try {
+      const res = await fetch(`${N8N_BASE}/checkout-url?ref=${encodeURIComponent(ref)}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.status === 'ready' && /^https:\/\//.test(data.checkout_url || '')) {
+          document.getElementById('amount').textContent = money(data.total);
+          document.getElementById('order').textContent = data.order_no;
+          document.getElementById('payLink').href = data.checkout_url;
+          show('ready');
+          setTimeout(() => location.assign(data.checkout_url), 1500);
+          return;
+        }
+      }
+    } catch (e) { /* түр алдаа – дахин оролдоно */ }
+    setTimeout(poll, POLL_MS);
+  }
+
+  poll();
+</script>
+</body>
+</html>

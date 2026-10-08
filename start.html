@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Захиалга – onlinevisa.mn</title>
+<script>
+  // ==== Тохиргоо: Tally маягтын холбоос ====
+  const TALLY_URL = 'https://tally.so/r/XXXXXX';
+
+  // Давтагдашгүй 12 тэмдэгттэй код (жишээ нь K7Q2M9XA4TPB)
+  const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+  const ref = Array.from(bytes, b => ALPHABET[b % ALPHABET.length]).join('');
+
+  location.replace(`${TALLY_URL}?ref=${ref}`);
+</script>
+<style>
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+         background: #EEF3F1; color: #1A2230; display: grid; place-items: center; min-height: 100vh; }
+</style>
+</head>
+<body>
+  <p>Захиалгын маягт руу шилжиж байна…</p>
+</body>
+</html>
