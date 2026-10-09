@@ -9,6 +9,9 @@
   :root {
     --bg: #FFFFFF;
     --ink: #1B3A6B;
+    --green: #1E8E3E;        /* VISA VISION VICTORY-ийн ногоон. Сайтынхаа яг өнгийг энд тавина */
+    --green-hover: #E8F5EC;
+    --green-muted: #2FAE1F;  /* сайтын --lime (01/ЗӨВЛӨГӨӨ-ийн өнгө) */
     --text: #1A2230;
     --muted: #5A6675;
     --line: #E3E8EE;
@@ -41,20 +44,22 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: var(--ink);
+    color: var(--green);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1rem;
     padding: 8px 12px 8px 8px;
     border-radius: 6px;
   }
-  .back:hover { background: #F1F4F8; }
-  .back:focus-visible { outline: 3px solid rgba(27,58,107,.35); outline-offset: 2px; }
+  .back:hover { background: var(--green-hover); }
+  .back:focus-visible { outline: 3px solid rgba(30,142,62,.35); outline-offset: 2px; }
   .back svg { width: 22px; height: 22px; }
   .site {
     margin-left: auto;
-    color: var(--muted);
-    font-size: .95rem;
+    color: var(--green-muted);
+    font-weight: 500;
+    font-size: .75rem;
+    letter-spacing: .04em;
     text-decoration: none;
   }
 
