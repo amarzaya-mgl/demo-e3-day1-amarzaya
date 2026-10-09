@@ -8,10 +8,9 @@
 <style>
   :root {
     --bg: #FFFFFF;
-    --ink: #1B3A6B;
-    --green: #1E8E3E;        /* VISA VISION VICTORY-ийн ногоон. Сайтынхаа яг өнгийг энд тавина */
+    --green: #1E8E3E;        /* Буцах товчны өнгө */
     --green-hover: #E8F5EC;
-    --green-muted: #2FAE1F;  /* сайтын --lime (01/ЗӨВЛӨГӨӨ-ийн өнгө) */
+    --lime: #2FAE1F;         /* сайтын --lime (01/ЗӨВЛӨГӨӨ, VISA VISION VICTORY) */
     --text: #1A2230;
     --muted: #5A6675;
     --line: #E3E8EE;
@@ -24,14 +23,8 @@
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   }
 
-  /* Толгой хэсэг: зүүн дээд буланд буцах товч */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--bg);
-    border-bottom: 1px solid var(--line);
-  }
+  /* Дээд хэсэг: зөвхөн сайтын нэр */
+  header { border-bottom: 1px solid var(--line); }
   .bar {
     max-width: 760px;
     margin: 0 auto;
@@ -39,6 +32,41 @@
     display: flex;
     align-items: center;
     gap: 12px;
+  }
+  .site {
+    margin-left: auto;
+    color: var(--lime);
+    font-weight: 500;
+    font-size: .75rem;
+    letter-spacing: .04em;
+    text-decoration: none;
+  }
+
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 24px 16px 24px;
+  }
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.25;
+    margin: 8px 0 4px;
+    color: var(--text);
+  }
+  .lead { color: var(--muted); margin: 0 0 16px; }
+  iframe { display: block; border: 0; width: 100%; }
+
+  /* Доод хэсэг: Буцах + VISA VISION VICTORY */
+  footer { border-top: 1px solid var(--line); }
+  .foot {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
   }
   .back {
     display: inline-flex;
@@ -54,28 +82,16 @@
   .back:hover { background: var(--green-hover); }
   .back:focus-visible { outline: 3px solid rgba(30,142,62,.35); outline-offset: 2px; }
   .back svg { width: 22px; height: 22px; }
-  .site {
-    margin-left: auto;
-    color: var(--green-muted);
-    font-weight: 500;
-    font-size: .75rem;
-    letter-spacing: .04em;
+  .slogan {
+    /* "амжилт" шиг: налуу serif бичиг */
+    color: #6FA931;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: .75rem;   /* onlinevisa.mn-тэй ижил */
+    line-height: 1.2;
     text-decoration: none;
   }
-
-  main {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 24px 16px 48px;
-  }
-  h1 {
-    font-size: 1.75rem;
-    line-height: 1.25;
-    margin: 8px 0 4px;
-    color: var(--text);
-  }
-  .lead { color: var(--muted); margin: 0 0 16px; }
-  iframe { display: block; border: 0; width: 100%; }
 </style>
 </head>
 <body>
@@ -103,6 +119,18 @@
       height="900"
       title="Визний орчуулгын захиалга"></iframe>
   </main>
+
+  <footer>
+    <div class="foot">
+      <a class="back" href="/" aria-label="Нүүр хуудас руу буцах">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
+        </svg>
+        Буцах
+      </a>
+      <a class="slogan" href="/">visa vision victory</a>
+    </div>
+  </footer>
 
   <script>
     // Tally-ийн албан ёсны embed скрипт: маягтын өндрийг автоматаар тааруулна
