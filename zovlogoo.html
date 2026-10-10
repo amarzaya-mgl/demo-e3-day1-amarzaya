@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Визний зөвлөгөө – onlinevisa.mn</title>
-<meta name="description" content="Визний материалын урьдчилсан жагсаалт гаргах AI зөвлөх">
+<meta name="description" content="Визний материалын урьдчилсан жагсаалт гаргах зөвлөх">
 <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
 <style>
   :root {
@@ -151,7 +151,7 @@
     <h1>Визний зөвлөгөө</h1>
     <p class="lead">Хэдэн асуултад хариулахад танд хэрэгтэй материалын урьдчилсан жагсаалтыг гаргаж өгнө.</p>
     <div id="chat"></div>
-    <p class="note">AI зөвлөх нь визний шийдвэрийг баталгаажуулахгүй. Эцсийн шаардлагыг тухайн улсын элчин сайдын яамны албан ёсны жагсаалтаас шалгана уу. Паспортын дугаар, регистрийн дугаар зэрэг хувийн мэдээллийг чатад бүү бичээрэй.</p>
+    <p class="note">Зөвлөх нь визний шийдвэрийг баталгаажуулахгүй. Эцсийн шаардлагыг тухайн улсын элчин сайдын яамны албан ёсны жагсаалтаас шалгана уу. Паспортын дугаар, регистрийн дугаар зэрэг хувийн мэдээллийг чатад бүү бичээрэй.</p>
   </main>
 
   <footer>
@@ -172,12 +172,15 @@
     // ===== n8n Chat Trigger-ийн Production URL-ийг энд тавина =====
     const WEBHOOK_URL = 'https://amarzaya-khashkhuu.app.n8n.cloud/webhook/f8d12bca-f617-4bcb-9dda-147dc27f04ab/chat';
 
+    // Хуудас нээх бүрт шинэ яриа эхэлнэ (хуучин session-ийг арилгана)
+    try { localStorage.removeItem('n8n-chat/sessionId'); } catch (e) {}
+
     createChat({
       webhookUrl: WEBHOOK_URL,
       target: '#chat',
       mode: 'fullscreen',
       showWelcomeScreen: false,
-      loadPreviousSession: true,
+      loadPreviousSession: false,
       defaultLanguage: 'en',
       initialMessages: [
         'Сайн байна уу! Би onlinevisa.mn-ийн визний зөвлөх.',
