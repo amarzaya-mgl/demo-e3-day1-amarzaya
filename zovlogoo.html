@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Визний зөвлөгөө – onlinevisa.mn</title>
+<meta name="description" content="Визний материалын урьдчилсан жагсаалт гаргах AI зөвлөх">
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --green: #1E8E3E;
+    --green-hover: #E8F5EC;
+    --lime: #2FAE1F;
+    --text: #1A2230;
+    --muted: #5A6675;
+    --line: #E3E8EE;
+
+    /* n8n чатын өнгө */
+    --chat--color-primary: #2FAE1F;
+    --chat--color-primary-shade-50: #289a1a;
+    --chat--color-primary-shade-100: #228616;
+    --chat--color-secondary: #1E8E3E;
+    --chat--color-secondary-shade-50: #1a7c36;
+    --chat--header--background: #FFFFFF;
+    --chat--header--color: #1A2230;
+    --chat--message--user--background: #2FAE1F;
+    --chat--message--user--color: #FFFFFF;
+    --chat--message--bot--background: #F2F5F3;
+    --chat--message--bot--color: #1A2230;
+    --chat--border-radius: 10px;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header { border-bottom: 1px solid var(--line); }
+  .bar {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 8px 12px 8px 8px;
+    border-radius: 6px;
+  }
+  .back:hover { background: var(--green-hover); }
+  .back:focus-visible { outline: 3px solid rgba(30,142,62,.35); outline-offset: 2px; }
+  .back svg { width: 22px; height: 22px; }
+  .site {
+    margin-left: auto;
+    color: var(--lime);
+    font-weight: 500;
+    font-size: .75rem;
+    letter-spacing: .04em;
+    text-decoration: none;
+  }
+
+  main {
+    flex: 1;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 16px 16px 8px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  h1 { font-size: 1.5rem; line-height: 1.25; margin: 4px 0 4px; }
+  .lead { color: var(--muted); margin: 0 0 12px; font-size: .95rem; }
+  .note {
+    font-size: .8rem;
+    color: var(--muted);
+    margin: 8px 0 0;
+  }
+  #chat {
+    flex: 1;
+    min-height: 480px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  #chat .chat-layout { height: 100%; }
+
+  /* Чат доторх захиалгын холбоосыг товч болгох */
+  #chat a[href*="zahialga.html"] {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 10px 18px;
+    background: var(--lime);
+    color: #FFFFFF !important;
+    font-weight: 700;
+    text-decoration: none !important;
+    border-radius: 8px;
+    line-height: 1.2;
+  }
+  #chat a[href*="zahialga.html"]:hover { background: var(--green); }
+  #chat a[href*="zahialga.html"]:focus-visible { outline: 3px solid rgba(30,142,62,.35); outline-offset: 2px; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 12px; }
+  .foot {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .slogan {
+    color: #6FA931;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: .75rem;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <a class="back" href="/" aria-label="Нүүр хуудас руу буцах">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
+        </svg>
+        Буцах
+      </a>
+      <a class="site" href="/">onlinevisa.mn</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>Визний зөвлөгөө</h1>
+    <p class="lead">Хэдэн асуултад хариулахад танд хэрэгтэй материалын урьдчилсан жагсаалтыг гаргаж өгнө.</p>
+    <div id="chat"></div>
+    <p class="note">AI зөвлөх нь визний шийдвэрийг баталгаажуулахгүй. Эцсийн шаардлагыг тухайн улсын элчин сайдын яамны албан ёсны жагсаалтаас шалгана уу. Паспортын дугаар, регистрийн дугаар зэрэг хувийн мэдээллийг чатад бүү бичээрэй.</p>
+  </main>
+
+  <footer>
+    <div class="foot">
+      <a class="back" href="/" aria-label="Нүүр хуудас руу буцах">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
+        </svg>
+        Буцах
+      </a>
+      <a class="slogan" href="/">visa vision victory</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    // ===== n8n Chat Trigger-ийн Production URL-ийг энд тавина =====
+    const WEBHOOK_URL = 'https://amarzaya-khashkhuu.app.n8n.cloud/webhook/f8d12bca-f617-4bcb-9dda-147dc27f04ab/chat';
+
+    // Хуудас нээх бүрт шинэ яриа эхэлнэ (хуучин session-ийг арилгана)
+    try { localStorage.removeItem('n8n-chat/sessionId'); } catch (e) {}
+
+    createChat({
+      webhookUrl: WEBHOOK_URL,
+      target: '#chat',
+      mode: 'fullscreen',
+      showWelcomeScreen: false,
+      loadPreviousSession: false,
+      defaultLanguage: 'en',
+      initialMessages: [
+        'Сайн байна уу! Би onlinevisa.mn-ийн визний зөвлөх.',
+        'Эхлээд, та аль улс руу явах гэж байна вэ?'
+      ],
+      i18n: {
+        en: {
+          title: 'Визний зөвлөх',
+          subtitle: 'Материалын урьдчилсан жагсаалт гаргана',
+          footer: '',
+          getStarted: 'Эхлэх',
+          inputPlaceholder: 'Хариултаа бичнэ үү…',
+          closeButtonTooltip: 'Хаах'
+        }
+      }
+    });
+
+    // Захиалгын товч шинэ таб биш, яг энэ цонхонд нээгдэнэ
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('#chat a[href*="zahialga.html"]');
+      if (!a) return;
+      e.preventDefault();
+      location.href = '/zahialga.html';
+    }, true);
+  </script>
+</body>
+</html>
