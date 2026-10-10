@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Холбоо — Visa Vision Victory</title><link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>.contact-account{display:inline-flex;align-items:center;gap:.7rem;margin-top:.4rem}.contact-account-logo{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid rgba(0,0,0,.15);transition:.25s}.contact-account:hover .contact-account-logo{transform:scale(1.08)}.ai-box{margin-top:2rem;padding:1.5rem;border:1px solid var(--lime);border-radius:18px;background:#2fae1f10}.ai-title{font-size:1.15rem;margin-bottom:.6rem}.ai-box .section-copy{margin-bottom:1.2rem}.ai-box .btn{background:var(--lime);border-color:var(--lime)}</style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/acb-logo.png" alt="ACB лого"><span class="brand-text"><span class="brand-since">since 2013</span><span class="brand-name">Онлайн виз</span></span></a>
+    <button class="menu-btn" aria-label="Цэс">☰</button>
+    <nav class="nav"><a href="index.html">Эхлэл</a><a href="services.html">Үйлчилгээ</a><a href="pricing.html">Тариф</a><a  href="/zahialga.html" style="display:inline-block; color:red; font-weight:600;">Захиалах</a><a class="active" href="contact.html">Холбоо</a></nav>
+  </header>
+  <main class="page">
+    <section class="page-intro reveal">
+      <p class="eyebrow"><span class="dot"></span>Холбоо барих</p>
+      <h1>Таны аяллын тухай <span class="accent">ярилцъя.</span></h1>
+    </section>
+    <section class="section contact-grid reveal">
+      <div>
+        <h2>Эхний алхмаа өнөөдөр хийгээрэй.</h2>
+        <p class="section-copy" style="margin-top:1.5rem">Мэдээллээ үлдээгээрэй. Бид ажлын нэг өдрийн дотор холбогдоно.</p>
+        <ul class="contact-list">
+          <li>Утас<br><a href="tel:+97688443525">8844-3525</a><br><a href="tel:+97695953525">9595-3525</a></li>
+          <li>И-мэйл<br><a class="contact-account" href="mailto:info@onlinevisa.mn"><img class="contact-account-logo" src="assets/acb-contact-logo.jpg" alt="Онлайн виз 14 жил лого"><span>info@onlinevisa.mn</span></a></li>
+          <li>Facebook<br><a class="contact-account" href="https://www.facebook.com/profile.php?id=61594742131099" target="_blank" rel="noopener noreferrer" aria-label="Онлайн виз Facebook хуудас"><img class="contact-account-logo" src="assets/acb-contact-logo.jpg" alt="Онлайн виз 14 жил лого"><span>Онлайн виз</span></a></li>
+        </ul>
+        <div class="ai-box">
+          <p class="ai-title">Шууд хариулт хэрэгтэй юу?</p>
+          <p class="section-copy">AI зөвлөх хэдэн асуултаар танд хэрэгтэй материалын жагсаалт, үнийн саналыг 24/7 гаргаж өгнө.</p>
+          <a class="btn" href="/zovlogoo.html">AI зөвлөхөөс асуух →</a>
+        </div>
+      </div>
+      <form class="form" id="contact-form">
+        <div class="field"><label for="name">Нэр</label><input id="name" name="name" autocomplete="name" required placeholder="Таны нэр"></div>
+        <div class="field"><label for="phone">Утас</label><input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="+976"></div>
+        <div class="field"><label for="email">Таны имэйл хаяг</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="name@example.com"></div>
+        <div class="field"><label for="country">Сонирхож буй улс</label><select id="country" name="country"><option>АНУ</option><option>Канад</option><option>Шенген</option><option>Австрали</option><option>Англи</option></select></div>
+        <div class="field"><label for="message">Товч мэдээлэл</label><textarea id="message" name="message" placeholder="Аяллын зорилго, хугацаа..."></textarea></div>
+        <button class="btn" type="submit">Хүсэлт илгээх →</button>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-row"><p>Яг одоо холбогдоорой</p><p class="footer-copy">2013 <img class="footer-logo" src="assets/acb-logo.png" alt="ACB лого"> 2026 © Онлайн виз</p><div class="footer-brand">visa vision victory</div></div></footer>
+  <script src="app.js"></script>
+</body>
+</html>
