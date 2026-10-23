@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Цаг авах — Визний мэдээлэл утсаар</title>
+  <meta name="description" content="Визний мэдээллийг утсаар 30 минут авах цаг захиалах. ₮50,000. Та өөрөө 8844-3525 руу залгана.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .booking{max-width:760px;margin:0 auto;padding:6vh 20px 10vh;font-size:20px;line-height:1.5}
+    .booking h1{font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:1rem}
+    .booking .sub{color:#444;font-size:1.1em;margin-bottom:1.6rem}
+    .callout{background:#2fae1f14;border:2px solid var(--lime);border-radius:12px;padding:1.1rem 1.3rem;margin:1.4rem 0 2.2rem;font-size:1.05em}
+    .callout strong{color:#1e7a12}
+    .callout .big{display:block;font-size:1.5em;font-weight:700;color:#0a0a0a;letter-spacing:.02em;margin-top:.2rem}
+    .step-title{font-size:1.25em;font-weight:700;margin:2.2rem 0 .9rem;display:flex;gap:.6rem;align-items:center}
+    .step-title .n{display:inline-grid;place-items:center;width:1.8em;height:1.8em;border-radius:50%;background:var(--lime);color:#fff;font-size:.85em;flex:none}
+    .chips{display:flex;flex-wrap:wrap;gap:.7rem}
+    .chip{font:inherit;font-size:1em;padding:.8rem 1.1rem;border:2px solid #0000002e;border-radius:10px;background:#fff;color:#0a0a0a;cursor:pointer;min-width:6.5em;text-align:center;line-height:1.25}
+    .chip small{display:block;font-size:.75em;color:#555}
+    .chip:hover{border-color:var(--lime)}
+    .chip[aria-pressed="true"]{background:var(--lime);border-color:var(--lime);color:#fff}
+    .chip[aria-pressed="true"] small{color:#eafbe6}
+    .chip:focus-visible,.inp:focus-visible,.go:focus-visible{outline:3px solid #2fae1f66;outline-offset:2px}
+    .muted{color:#555}
+    .field2{margin-bottom:1.3rem}
+    .field2 label{display:block;font-weight:700;margin-bottom:.4rem}
+    .inp{width:100%;font:inherit;font-size:1.15em;padding:.85rem 1rem;border:2px solid #0000002e;border-radius:10px;background:#fff;color:#0a0a0a}
+    .phone-echo{margin-top:.6rem;font-size:1.05em}
+    .phone-echo b{font-size:1.5em;letter-spacing:.06em}
+    .check{display:flex;gap:.7rem;align-items:flex-start;margin:1rem 0 1.4rem;cursor:pointer}
+    .check input{width:1.4em;height:1.4em;margin-top:.15em;accent-color:var(--lime);flex:none}
+    .summary{background:#f6f6f6;border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.2rem}
+    .go{width:100%;font:inherit;font-size:1.25em;font-weight:700;padding:1.05rem;border:0;border-radius:10px;background:var(--lime);color:#fff;cursor:pointer}
+    .go:hover{background:#289a1a}
+    .go[disabled]{background:#9ccf94;cursor:not-allowed}
+    .err{color:#b3261e;font-weight:700;margin-top:1rem;min-height:1.5em}
+    .done{display:none}
+    .done h2{font-size:1.8em;line-height:1.2;margin-bottom:1rem}
+    .done .row{padding:.8rem 0;border-top:1px solid #0000001a}
+    .done .row b{font-size:1.2em}
+    .pay{display:block;text-align:center;text-decoration:none;margin:1.4rem 0}
+    .warn{background:#fff7e0;border:2px solid #f0c040;border-radius:12px;padding:1rem 1.2rem;margin-top:1rem}
+    .loading{color:#555;font-style:italic}
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/acb-logo.png" alt="ACB лого"><span class="brand-text"><span class="brand-since">since 2013</span><span class="brand-name">Онлайн виз</span></span></a>
+    <button class="menu-btn" aria-label="Цэс">☰</button>
+    <nav class="nav"><a href="index.html">Эхлэл</a><a href="about.html">Бидний тухай</a><a href="services.html">Үйлчилгээ</a><a class="active" href="pricing.html">Тариф</a><a href="/zahialga.html" style="display:inline-block; color:red; font-weight:600;">Захиалах</a><a href="contact.html">Холбоо</a></nav>
+  </header>
+
+  <main class="page booking">
+    <section id="form-view">
+      <h1>Визний мэдээлэл утсаар</h1>
+      <p class="sub">30 минут · <strong>₮50,000</strong> · Цагаа сонгоод нэр, утсаа бичнэ үү.</p>
+
+      <div class="callout">
+        <strong>Анхаар:</strong> Сонгосон цагтаа <strong>та өөрөө</strong> дараах дугаар руу залгана. Бид залгахгүй.
+        <span class="big">📞 8844-3525</span>
+      </div>
+
+      <div class="step-title"><span class="n">1</span>Өдрөө сонгоно уу</div>
+      <div id="days" class="chips"><span class="loading">Сул цагийг ачаалж байна…</span></div>
+
+      <div id="time-block" hidden>
+        <div class="step-title"><span class="n">2</span>Цагаа сонгоно уу</div>
+        <div id="times" class="chips"></div>
+      </div>
+
+      <form id="form" hidden novalidate>
+        <div class="step-title"><span class="n">3</span>Нэр, утсаа бичнэ үү</div>
+        <div class="field2">
+          <label for="name">Нэр</label>
+          <input class="inp" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field2">
+          <label for="phone">Гар утасны дугаар</label>
+          <input class="inp" id="phone" name="phone" inputmode="numeric" autocomplete="tel" maxlength="9" placeholder="99112233" required>
+          <div class="phone-echo" id="phone-echo" hidden>Таны дугаар: <b id="phone-big"></b></div>
+        </div>
+
+        <div class="summary" id="summary"></div>
+
+        <label class="check"><input type="checkbox" id="ok-phone"> <span>Утасны дугаар зөв. Төлбөрийн холбоос болон сануулга энэ дугаар руу <strong>SMS</strong>-ээр ирнэ.</span></label>
+
+        <button class="go" id="submit" type="submit" disabled>Цаг авах</button>
+        <div class="err" id="err" role="alert"></div>
+      </form>
+    </section>
+
+    <section id="done-view" class="done" aria-live="polite">
+      <h2>✔ Цаг түр захиалагдлаа</h2>
+      <div class="row">Таны цаг: <b id="d-start"></b></div>
+      <div class="row">Төлөх: <b>₮50,000</b>, <b id="d-deadline"></b>-оос өмнө. Хугацаандаа төлөөгүй бол цаг цуцлагдана.</div>
+      <a class="btn pay" id="d-pay" href="#" target="_blank" rel="noopener">Одоо төлөх →</a>
+
+      <div class="callout">
+        Төлбөр орсны дараа баталгаажуулах SMS ирнэ. Цагтаа <strong>та өөрөө</strong> залгана:
+        <span class="big">📞 8844-3525</span>
+      </div>
+
+      <div class="warn">
+        📩 Бидний SMS <strong>9099 0931</strong> дугаараас ирнэ. Цагаас <strong>1 цаг</strong> болон <strong>30 минутын</strong> өмнө сануулга ирнэ.
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-row"><p>Туршлагатай. Мэргэшсэн. Хариуцлагатай.</p><p class="footer-copy">2013 <img class="footer-logo" src="assets/acb-logo.png" alt="ACB лого"> 2026 © Онлайн виз</p><div class="footer-brand">visa vision victory</div></div></footer>
+  <script src="app.js"></script>
+  <script>
+  (function () {
+    const N8N = 'https://amarzaya-khashkhuu.app.n8n.cloud/webhook';
+    const WD = ['Ням', 'Даваа', 'Мягмар', 'Лхагва', 'Пүрэв', 'Баасан', 'Бямба'];
+    const $ = id => document.getElementById(id);
+    let data = [], day = null, slot = null;
+
+    function chip(html, onClick) {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip'; b.innerHTML = html;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', () => {
+        b.parentNode.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', 'false'));
+        b.setAttribute('aria-pressed', 'true');
+        onClick();
+      });
+      return b;
+    }
+
+    function loadSlots() {
+      $('days').innerHTML = '<span class="loading">Сул цагийг ачаалж байна…</span>';
+      $('time-block').hidden = true; $('form').hidden = true; day = slot = null;
+      fetch(N8N + '/free-slots').then(r => r.json()).then(j => {
+        data = j.days || [];
+        $('days').innerHTML = '';
+        if (!data.length) { $('days').innerHTML = '<span class="muted">Ойрын өдрүүдэд сул цаг алга. Дараа дахин оролдоно уу.</span>'; return; }
+        data.forEach(d => {
+          const [, m, dd] = d.date.split('-');
+          $('days').appendChild(chip(`${WD[d.weekday]}<small>${+m}/${+dd}</small>`, () => pickDay(d)));
+        });
+      }).catch(() => {
+        $('days').innerHTML = '<span class="err">Сул цагийг ачаалж чадсангүй. Хуудсаа дахин ачаална уу.</span>';
+      });
+    }
+
+    function pickDay(d) {
+      day = d; slot = null; $('form').hidden = true;
+      $('times').innerHTML = '';
+      d.slots.forEach(s => $('times').appendChild(chip(s.label, () => pickSlot(s))));
+      $('time-block').hidden = false;
+      $('time-block').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function pickSlot(s) {
+      slot = s;
+      const [y, m, dd] = day.date.split('-');
+      $('summary').innerHTML = `Сонгосон цаг: <b>${y}/${m}/${dd} (${WD[day.weekday]}) ${s.label}</b>`;
+      $('form').hidden = false; validate();
+      $('form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    const digits = () => $('phone').value.replace(/\D/g, '');
+    function validate() {
+      const p = digits();
+      $('phone-echo').hidden = !p;
+      $('phone-big').textContent = p.length > 4 ? p.slice(0, 4) + '-' + p.slice(4) : p;
+      const ok = slot && $('name').value.trim().length >= 2 && /^[6-9]\d{7}$/.test(p) && $('ok-phone').checked;
+      $('submit').disabled = !ok;
+    }
+    ['input', 'change'].forEach(ev => {
+      $('name').addEventListener(ev, validate);
+      $('phone').addEventListener(ev, validate);
+      $('ok-phone').addEventListener(ev, validate);
+    });
+
+    $('form').addEventListener('submit', e => {
+      e.preventDefault(); validate();
+      if ($('submit').disabled) return;
+      $('submit').disabled = true; $('submit').textContent = 'Илгээж байна…'; $('err').textContent = '';
+      fetch(N8N + '/book', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: $('name').value.trim(), phone: digits(), start: slot.start })
+      }).then(r => r.json()).then(j => {
+        if (!j.ok) {
+          $('err').textContent = j.error || 'Алдаа гарлаа. Дахин оролдоно уу.';
+          $('submit').textContent = 'Цаг авах'; validate();
+          if (/захиалагдсан|ойр/.test(j.error || '')) setTimeout(loadSlots, 2500);
+          return;
+        }
+        $('d-start').textContent = j.start_text;
+        $('d-deadline').textContent = j.deadline_text;
+        $('d-pay').href = j.pay_url;
+        $('form-view').style.display = 'none';
+        $('done-view').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }).catch(() => {
+        $('err').textContent = 'Холболт тасарлаа. Дахин оролдоно уу.';
+        $('submit').textContent = 'Цаг авах'; validate();
+      });
+    });
+
+    loadSlots();
+  })();
+  </script>
+</body>
+</html>
